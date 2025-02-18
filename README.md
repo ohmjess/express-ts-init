@@ -27,7 +27,15 @@ git clone https://github.com/ohmjess/express-ts-init.git
 cd express-ts-init
 ```
 
-### 2. Migrate Database
+### 2. Create project structure
+
+Run the following command to create the project structure:
+
+```bash
+node .\setup.js   
+```
+
+### 3. Migrate Database
 
 Run the following command to migrate the database and create the necessary tables:
 

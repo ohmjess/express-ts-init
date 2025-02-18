@@ -190,10 +190,7 @@ export const envConfig = {
   "src/server.ts": `import app from "./app";
 import { userRouter } from "./routes/user.routes" 
 
-app.use("/api/users", userRouter);
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(\`Server running on http://localhost:\${PORT}\`));`,
+app.use("/api/users", userRouter);`,
 
   "package.json": JSON.stringify({
     "name": "express-ts-app",
@@ -323,22 +320,22 @@ coverage`,
   
     db:
       image: postgres:15
-      container_name: \${APP_NAME}-db\
+      container_name: \${APP_NAME}-db
       restart: always
       env_file:
         - .env
       volumes:
-        - pg_data_vote:/var/lib/postgresql/data
+        - pg_data:/var/lib/postgresql/data
       ports:
         - "&{POSTGRES_PORT}:5432"
   
     pgadmin:
       image: dpage/pgadmin4
-      container_name: \${APP_NAME}-pgadmin\
+      container_name: \${APP_NAME}-pgadmin
       restart: always
       environment:
-        PGADMIN_DEFAULT_EMAIL: \${PGADMIN_DEFAULT_EMAIL}\
-        PGADMIN_DEFAULT_PASSWORD: \${PGADMIN_DEFAULT_PASSWORD}\
+        PGADMIN_DEFAULT_EMAIL: \${PGADMIN_DEFAULT_EMAIL}
+        PGADMIN_DEFAULT_PASSWORD: \${PGADMIN_DEFAULT_PASSWORD}
       ports:
         - "&{PGADMIN_PORT}:80"
       depends_on:
@@ -346,15 +343,15 @@ coverage`,
         
     redis:
       image: redis:7
-      container_name: \${APP_NAME}-redis\
+      container_name: \${APP_NAME}-redis
       restart: always
       environment:
-        - REDIS_PASSWORD=\${REDIS_PASSWORD}\
+        - REDIS_PASSWORD=\${REDIS_PASSWORD}
       ports:
         - "&{REDIS_PORT}:6379"
       command: ["redis-server", "--requirepass", "&{REDIS_PASSWORD}"]
       volumes:
-        - redis_data_vote:/data
+        - redis_data:/data
       healthcheck:
         test: ["CMD", "redis-cli", "-a", "$REDIS_PASSWORD", "ping"]
         interval: 10s
@@ -362,8 +359,8 @@ coverage`,
         retries: 3
   
   volumes:
-    pg_data_vote:
-    redis_data_vote:
+    pg_data:
+    redis_data:
     
   `,
 };
