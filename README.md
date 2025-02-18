@@ -40,7 +40,7 @@ node .\setup.js
 Run the following command to migrate the database and create the necessary tables:
 
 ```bash
-npm run migrate
+npm run prisma:migrate
 ```
 
 ### 3. Prisma Generation
@@ -48,10 +48,18 @@ npm run migrate
 Run the following command to generate Prisma client and other necessary files:
 
 ```bash
-npm run generate
+npm run prisma:generate
 ```
 
-### 4. Run the Application
+### 4. Prisma Generation
+
+Run the following command to generate Prisma client and other necessary files:
+
+```bash
+npm run prisma:seed
+```
+
+### 5. Run the Application
 
 Start the application by running:
 

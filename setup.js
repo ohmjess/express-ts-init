@@ -14,7 +14,7 @@ const folders = [
   "src/middlewares",
   "src/config",
   "src/utils",
-  "__tests__",
+  "src/__tests__",
 ];
 
 const files = {
@@ -200,9 +200,9 @@ app.use("/api/users", userRouter);`,
       "start": "node dist/server.js",
       "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
       "test": "jest --coverage",
-      "migreate": "npx prisma migrate dev",
-      "generate": "npx prisma generate",
-      "seed": "ts-node prisma/seed.ts"
+      "prisma:generate": "npx prisma generate",
+      "prisma:migrate": "npx prisma migrate dev",
+      "prisma:seed": "ts-node prisma/seed.ts"
     },
     "dependencies": {
       "express": "^4.18.2",
@@ -226,7 +226,7 @@ app.use("/api/users", userRouter);`,
   "jest.config.js": `module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
-  roots: ["<rootDir>/__tests__"],
+  roots: ["<rootDir>/src/__tests__"],
 };`,
 
   "tsconfig.json": JSON.stringify({
@@ -242,10 +242,10 @@ app.use("/api/users", userRouter);`,
     }
   }, null, 2),
 
-  "__tests__/user.service.test.ts": `import { findUserById, registerUser } from "../src/services/user.service";
+  "src/__tests__/user.service.test.ts": `import { findUserById, registerUser } from "../services/user.service";
 
 // Mock repository
-jest.mock("../src/repositories/user.repository", () => ({
+jest.mock("../repositories/user.repository", () => ({
   getUserById: jest.fn((id) => (id === 1 ? { id, name: "John Doe", email: "john@example.com" } : null)),
   createUser: jest.fn((userData) => ({ id: 2, ...userData })),
 }));
@@ -490,7 +490,7 @@ main()
             return;
           }
           console.log("✅ Jest tests ran successfully!\n", testStdout);
-          console.log("🚀 Setup complete! Run 'npm run migreate -> npm run generate -> npm run seed -> npm run dev' to start the server.");
+          console.log("🚀 Setup complete! Run 'npm run prisma:migrate -> npm run prisma:generate -> npm run prisma:seed -> npm run dev' to start the server.");
         });
       });
     });
