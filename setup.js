@@ -323,7 +323,7 @@ coverage`,
   
     db:
       image: postgres:15
-      container_name: vote-db
+      container_name: \${APP_NAME}-db\
       restart: always
       env_file:
         - .env
@@ -334,11 +334,11 @@ coverage`,
   
     pgadmin:
       image: dpage/pgadmin4
-      container_name: vote-pgadmin
+      container_name: \${APP_NAME}-pgadmin\
       restart: always
       environment:
-        PGADMIN_DEFAULT_EMAIL: &{PGADMIN_DEFAULT_EMAIL}
-        PGADMIN_DEFAULT_PASSWORD: &{PGADMIN_DEFAULT_PASSWORD}
+        PGADMIN_DEFAULT_EMAIL: \${PGADMIN_DEFAULT_EMAIL}\
+        PGADMIN_DEFAULT_PASSWORD: \${PGADMIN_DEFAULT_PASSWORD}\
       ports:
         - "&{PGADMIN_PORT}:80"
       depends_on:
@@ -346,10 +346,10 @@ coverage`,
         
     redis:
       image: redis:7
-      container_name: vote-redis
+      container_name: \${APP_NAME}-redis\
       restart: always
       environment:
-        - REDIS_PASSWORD=&{REDIS_PASSWORD}
+        - REDIS_PASSWORD=\${REDIS_PASSWORD}\
       ports:
         - "&{REDIS_PORT}:6379"
       command: ["redis-server", "--requirepass", "&{REDIS_PASSWORD}"]

@@ -25,3 +25,32 @@ Clone the repository to your local machine using the following command:
 ```bash
 git clone https://github.com/ohmjess/express-ts-init.git
 cd express-ts-init
+```
+
+### 2. Migrate Database
+
+Run the following command to migrate the database and create the necessary tables:
+
+```bash
+npm run migrate
+```
+
+### 3. Prisma Generation
+
+Run the following command to generate Prisma client and other necessary files:
+
+```bash
+npm run generate
+```
+
+### 4. Run the Application
+
+Start the application by running:
+
+```bash
+npm run dev
+```
+
+Your Express application will now be running on `http://localhost:5000`.
+
+## Available Scripts
